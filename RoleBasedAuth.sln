@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleBasedAuth", "RoleBasedAuth\RoleBasedAuth.csproj", "{BDC32C44-EE95-4700-9809-927D47188129}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDC32C44-EE95-4700-9809-927D47188129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC32C44-EE95-4700-9809-927D47188129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC32C44-EE95-4700-9809-927D47188129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC32C44-EE95-4700-9809-927D47188129}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2E950FD-4627-4D7E-A589-6A281156567D}
+	EndGlobalSection
+EndGlobal
