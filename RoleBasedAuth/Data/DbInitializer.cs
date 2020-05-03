@@ -2,12 +2,13 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
 
 namespace RoleBasedAuth.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(IServiceProvider serviceProvider)
+        public static async Task Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
             context.Database.EnsureCreated();
@@ -16,15 +17,15 @@ namespace RoleBasedAuth.Data
             var roleName = "Administrator";
             IdentityResult result;
 
-            var roleExist = roleManager.RoleExistsAsync(roleName).Result;
+            var roleExist = await roleManager.RoleExistsAsync(roleName);
             if (!roleExist)
             {
-                result = roleManager.CreateAsync(new IdentityRole(roleName)).Result;
+                result = await roleManager.CreateAsync(new IdentityRole(roleName));
                 if (result.Succeeded)
                 {
                     var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
                     var config = serviceProvider.GetRequiredService<IConfiguration>();
-                    var admin = userManager.FindByEmailAsync(config["AdminCredentials:Email"]).Result;
+                    var admin = await userManager.FindByEmailAsync(config["AdminCredentials:Email"]);
                     
                     if (admin == null)
                     {
@@ -35,10 +36,10 @@ namespace RoleBasedAuth.Data
                             EmailConfirmed = true
                         };
 
-                        result = userManager.CreateAsync(admin, config["AdminCredentials:Password"]).Result;
+                        result = await userManager.CreateAsync(admin, config["AdminCredentials:Password"]);
                         if (result.Succeeded)
                         {
-                            result = userManager.AddToRoleAsync(admin, roleName).Result;
+                            result = await userManager.AddToRoleAsync(admin, roleName);
                             if (!result.Succeeded)
                             {
                                 // todo: process errors
